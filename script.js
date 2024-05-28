@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const petsList = document.getElementById('pets-list');
 
-    // Função para carregar os pets do localStorage
     function loadPets() {
         const storedPets = localStorage.getItem('pets');
         return storedPets ? JSON.parse(storedPets) : [];
     }
 
-    // Função para salvar os pets no localStorage
     function savePets(pets) {
         localStorage.setItem('pets', JSON.stringify(pets));
     }
@@ -16,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function displayPets() {
         petsList.innerHTML = '';
-        pets.forEach(pet => {
+        pets.forEach((pet, index) => {
             const petCard = document.createElement('div');
             petCard.classList.add('pet-card');
 
@@ -26,10 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p><strong>Idade:</strong> ${pet.age} anos</p>
                 <p><strong>Raça:</strong> ${pet.breed}</p>
                 <p>${pet.description}</p>
+                <button class="remove-pet" data-index="${index}">Remover</button>
             `;
 
             petsList.appendChild(petCard);
         });
+
+        document.querySelectorAll('.remove-pet').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                removePet(index);
+            });
+        });
+    }
+
+    function removePet(index) {
+        pets.splice(index, 1);
+        savePets(pets);
+        displayPets();
     }
 
     const petForm = document.getElementById('pet-form');

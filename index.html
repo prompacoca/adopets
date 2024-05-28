@@ -8,10 +8,22 @@
 </head>
 <body>
     <header>
-        <h1>Adoção de Pets</h1>
+        <nav>
+            <div class="logo">Adoção de Pets</div>
+            <ul>
+                <li><a href="#form-section">Adicionar Pet</a></li>
+                <li><a href="#pets-list">Ver Pets</a></li>
+            </ul>
+        </nav>
     </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encontre seu novo melhor amigo</h1>
+            <p>Adote um pet e mude uma vida hoje mesmo.</p>
+        </div>
+    </section>
     <main>
-        <section id="form-section">
+        <section id="form-section" class="form-section">
             <h2>Adicionar um Novo Pet</h2>
             <form id="pet-form">
                 <label for="name">Nome:</label>
@@ -32,12 +44,12 @@
                 <button type="submit">Adicionar Pet</button>
             </form>
         </section>
-        <section id="pets-list">
+        <section id="pets-list" class="pets-list">
             <!-- Os pets serão listados aqui -->
         </section>
     </main>
     <footer>
-        <p>© 2024 Adoção de Pets</p>
+        <p>© 2024 Adoção de Pets. Todos os direitos reservados.</p>
     </footer>
     <script src="script.js"></script>
 </body>
