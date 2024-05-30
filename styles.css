@@ -1,12 +1,15 @@
+/* Importar fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f4f4f9;
-    color: #333;
 }
 
 header {
@@ -23,8 +26,9 @@ header nav {
     margin: 0 auto;
 }
 
-header h1 {
-    margin: 0;
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 header ul {
@@ -42,20 +46,28 @@ header a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 header a:hover {
-    text-decoration: underline;
+    color: #cce8cc;
 }
 
 .hero {
-    background: url('https://t3.ftcdn.net/jpg/03/90/12/30/240_F_390123053_dLdh2YggDNrXYlGP9OgBGfTdIwUKU2Hx.jpg') no-repeat center center/cover;
+    background: url('https://img.freepik.com/fotos-premium/banner-ocultar-cachorro-engracado-surpreso-isolado-em-amarelo_77749-307.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 3em 1em;
 }
 
-.hero h2 {
+.hero-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2em;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.hero h1 {
     margin: 0;
     font-size: 2.5em;
 }
@@ -71,10 +83,10 @@ main {
     margin: 2em auto;
 }
 
-#form-section {
+.form-section {
     background: white;
     padding: 2em;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 2em;
 }
@@ -90,7 +102,7 @@ form label {
 }
 
 form input, form textarea {
-    padding: 0.5em;
+    padding: 0.75em;
     margin-top: 0.5em;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -113,7 +125,7 @@ form button:hover {
     background-color: #45a049;
 }
 
-#pets-list {
+.pets-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -122,12 +134,12 @@ form button:hover {
 .pet-card {
     background: white;
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     margin: 1em;
     padding: 1em;
     width: 300px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .pet-card:hover {
@@ -137,7 +149,7 @@ form button:hover {
 
 .pet-card img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .pet-card h2 {

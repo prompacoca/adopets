@@ -11,8 +11,11 @@
         <nav>
             <div class="logo">Adoção de Pets</div>
             <ul>
+                <li id="welcome-message"></li> <!-- Elemento para exibir o nome do usuário -->
+                <li id="register-link"><a href="register.html">Registrar</a></li>
                 <li><a href="#form-section">Adicionar Pet</a></li>
                 <li><a href="#pets-list">Ver Pets</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -43,6 +46,7 @@
                 
                 <button type="submit">Adicionar Pet</button>
             </form>
+            <p id="login-message" style="display: none; color: red;">Você precisa estar logado para adicionar um pet.</p>
         </section>
         <section id="pets-list" class="pets-list">
             <!-- Os pets serão listados aqui -->

@@ -1,5 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     const petsList = document.getElementById('pets-list');
+    const welcomeMessage = document.getElementById('welcome-message');
+    const registerLink = document.getElementById('register-link');
+    const logoutLink = document.getElementById('logout-link');
+    const petForm = document.getElementById('pet-form');
+    const loginMessage = document.getElementById('login-message');
+
+    // Exibir nome do usuário logado
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        welcomeMessage.textContent = `Bem-vindo, ${loggedInUser}!`;
+        registerLink.style.display = 'none';
+        logoutLink.style.display = 'block';
+    } else {
+        petForm.style.display = 'none';
+        loginMessage.style.display = 'block';
+    }
 
     function loadPets() {
         const storedPets = localStorage.getItem('pets');
@@ -44,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         displayPets();
     }
 
-    const petForm = document.getElementById('pet-form');
     const errorMessage = document.createElement('p');
     errorMessage.style.color = 'red';
 
@@ -59,6 +74,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     petForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        if (!loggedInUser) {
+            loginMessage.style.display = 'block';
+            return;
+        }
 
         const name = event.target.name.value.trim();
         const age = event.target.age.value.trim();
@@ -96,4 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     displayPets();
+
+    // Função de logout
+    window.logout = function() {
+        localStorage.removeItem('loggedInUser');
+        window.location.reload();
+    }
 });
