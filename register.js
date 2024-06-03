@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const users = JSON.parse(localStorage.getItem('users')) || [];
         if (users.find(user => user.username === username)) {
-            registerError.textContent = 'Nome de usuário já existe.';
-            registerForm.prepend(registerError);
+            registerError.textContent = 'Nome de usuário já existe. <a href="login.html">Clique aqui para fazer login</a>.';
+            registerError.style.display = 'block';
             return;
         }
 
         users.push({ username, password });
         localStorage.setItem('users', JSON.stringify(users));
-        localStorage.setItem('loggedInUser', username); // Armazena o nome do usuário logado
+        localStorage.setItem('loggedInUser', username);
         registerForm.reset();
-        window.location.href = 'index.html'; // Redireciona para a página principal após o registro
+        window.location.href = 'index.html';
     });
 });

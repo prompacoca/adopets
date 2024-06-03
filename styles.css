@@ -54,7 +54,7 @@ header a:hover {
 }
 
 .hero {
-    background: url('https://img.freepik.com/fotos-premium/banner-ocultar-cachorro-engracado-surpreso-isolado-em-amarelo_77749-307.jpg') no-repeat center center/cover;
+    background: url('https://s1.1zoom.me/big0/896/Dogs_Many_White_background_Puppy_Bulldog_Spaniel_565687_1280x512.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 3em 1em;
@@ -183,4 +183,22 @@ footer {
     text-align: center;
     padding: 1em 0;
     margin-top: auto;
+}
+
+#profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 1em;
+}
+
+#profile-info p {
+    font-size: 1.2em;
+    font-weight: bold;
 }

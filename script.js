@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const petsList = document.getElementById('pets-list');
     const welcomeMessage = document.getElementById('welcome-message');
     const registerLink = document.getElementById('register-link');
+    const loginLink = document.getElementById('login-link');
+    const profileLink = document.getElementById('profile-link');
     const logoutLink = document.getElementById('logout-link');
     const petForm = document.getElementById('pet-form');
     const loginMessage = document.getElementById('login-message');
@@ -10,11 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (loggedInUser) {
         welcomeMessage.textContent = `Bem-vindo, ${loggedInUser}!`;
-        registerLink.style.display = 'none';
+        if (registerLink) registerLink.style.display = 'none';
+        if (loginLink) loginLink.style.display = 'none';
+        if (profileLink) profileLink.style.display = 'block';
         logoutLink.style.display = 'block';
     } else {
-        petForm.style.display = 'none';
-        loginMessage.style.display = 'block';
+        if (petForm) petForm.style.display = 'none';
+        if (loginMessage) loginMessage.style.display = 'block';
     }
 
     function loadPets() {
@@ -40,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p><strong>Idade:</strong> ${pet.age} anos</p>
                 <p><strong>Raça:</strong> ${pet.breed}</p>
                 <p>${pet.description}</p>
-                <button class="remove-pet" data-index="${index}">Remover</button>
+                ${pet.username === loggedInUser ? `<button class="remove-pet" data-index="${index}">Remover</button>` : ''}
             `;
 
             petsList.appendChild(petCard);
@@ -72,54 +76,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    petForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    if (petForm) {
+        petForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        if (!loggedInUser) {
-            loginMessage.style.display = 'block';
-            return;
-        }
+            if (!loggedInUser) {
+                loginMessage.style.display = 'block';
+                return;
+            }
 
-        const name = event.target.name.value.trim();
-        const age = event.target.age.value.trim();
-        const breed = event.target.breed.value.trim();
-        const image = event.target.image.value.trim();
-        const description = event.target.description.value.trim();
+            const name = event.target.name.value.trim();
+            const age = event.target.age.value.trim();
+            const breed = event.target.breed.value.trim();
+            const image = event.target.image.value.trim();
+            const description = event.target.description.value.trim();
 
-        if (!name || !age || !breed || !image || !description) {
-            errorMessage.textContent = 'Por favor, preencha todos os campos.';
-            petForm.prepend(errorMessage);
-            return;
-        }
+            if (!name || !age || !breed || !image || !description) {
+                errorMessage.textContent = 'Por favor, preencha todos os campos.';
+                petForm.prepend(errorMessage);
+                return;
+            }
 
-        if (!isValidURL(image)) {
-            errorMessage.textContent = 'Por favor, insira uma URL válida para a imagem.';
-            petForm.prepend(errorMessage);
-            return;
-        }
+            if (!isValidURL(image)) {
+                errorMessage.textContent = 'Por favor, insira uma URL válida para a imagem.';
+                petForm.prepend(errorMessage);
+                return;
+            }
 
-        const newPet = {
-            name,
-            age: parseInt(age),
-            breed,
-            image,
-            description
-        };
+            const newPet = {
+                name,
+                age: parseInt(age),
+                breed,
+                image,
+                description,
+                username: loggedInUser // Associa o pet ao usuário logado
+            };
 
-        pets.push(newPet);
-        savePets(pets);
-        displayPets();
-        petForm.reset();
-        if (errorMessage.parentNode) {
-            errorMessage.parentNode.removeChild(errorMessage);
-        }
-    });
+            pets.push(newPet);
+            savePets(pets);
+            displayPets();
+            petForm.reset();
+            if (errorMessage.parentNode) {
+                errorMessage.parentNode.removeChild(errorMessage);
+            }
+        });
+    }
 
     displayPets();
 
     // Função de logout
     window.logout = function() {
         localStorage.removeItem('loggedInUser');
-        window.location.reload();
+        window.location.href = 'index.html';
     }
 });

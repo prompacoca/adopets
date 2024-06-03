@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Adoção de Pets</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Adoção de Pets</div>
+            <ul>
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="profile.html">Perfil</a></li>
+                <li id="login-link"><a href="login.html">Login</a></li>
+                <li id="register-link"><a href="register.html">Registrar</a></li>
+                <li id="logout-link" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="profile-section" class="form-section">
+            <h2>Perfil</h2>
+            <div id="profile-info">
+                <img id="profile-picture" src="" alt="Foto de Perfil" style="display: none;"/>
+                <p id="profile-name"></p>
+            </div>
+            <form id="profile-pic-form">
+                <label for="profile-pic">Foto de Perfil:</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*" required>
+                <button type="submit">Salvar Foto</button>
+            </form>
+            <form id="username-form">
+                <label for="new-username">Novo Nome de Usuário:</label>
+                <input type="text" id="new-username" name="new-username" required>
+                <button type="submit">Salvar Nome de Usuário</button>
+            </form>
+            <form id="password-form">
+                <label for="new-password">Nova Senha:</label>
+                <input type="password" id="new-password" name="new-password" required>
+                <button type="submit">Salvar Senha</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Adoção de Pets. Todos os direitos reservados.</p>
+    </footer>
+    <script src="profile.js"></script>
+</body>
+</html>
