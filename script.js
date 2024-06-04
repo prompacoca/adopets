@@ -8,10 +8,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const petForm = document.getElementById('pet-form');
     const loginMessage = document.getElementById('login-message');
 
-    // Exibir nome do usuário logado
+    // Exibir nome do usuário logado e foto de perfil
     const loggedInUser = localStorage.getItem('loggedInUser');
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.username === loggedInUser);
+
     if (loggedInUser) {
-        welcomeMessage.textContent = `Bem-vindo, ${loggedInUser}!`;
+        if (user && user.profilePicture) {
+            const profileImg = document.createElement('img');
+            profileImg.src = user.profilePicture;
+            profileImg.classList.add('profile-img');
+            welcomeMessage.appendChild(profileImg);
+        }
+        const usernameSpan = document.createElement('span');
+        usernameSpan.textContent = `Bem-vindo, ${loggedInUser}!`;
+        usernameSpan.classList.add('username-span');
+        welcomeMessage.appendChild(usernameSpan);
         if (registerLink) registerLink.style.display = 'none';
         if (loginLink) loginLink.style.display = 'none';
         if (profileLink) profileLink.style.display = 'block';

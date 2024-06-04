@@ -25,6 +25,7 @@
             <div id="profile-info">
                 <img id="profile-picture" src="" alt="Foto de Perfil" style="display: none;"/>
                 <p id="profile-name"></p>
+                <p id="contact-link"></p>
             </div>
             <form id="profile-pic-form">
                 <label for="profile-pic">Foto de Perfil:</label>
@@ -41,6 +42,12 @@
                 <input type="password" id="new-password" name="new-password" required>
                 <button type="submit">Salvar Senha</button>
             </form>
+            <form id="contact-form">
+                <label for="contact-url">Link para Contato:</label>
+                <input type="url" id="contact-url" name="contact-url" required>
+                <button type="submit">Salvar Link</button>
+            </form>
+            <button id="delete-account" class="delete-account-btn">Excluir Conta</button>
         </section>
     </main>
     <footer>

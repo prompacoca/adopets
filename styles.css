@@ -54,7 +54,7 @@ header a:hover {
 }
 
 .hero {
-    background: url('https://s1.1zoom.me/big0/896/Dogs_Many_White_background_Puppy_Bulldog_Spaniel_565687_1280x512.jpg') no-repeat center center/cover;
+    background: url('https://images-ext-1.discordapp.net/external/59vI8Cjwd5LI19QUKjx0YSJ2KThBmEAfdsCkFagsf04/https/s1.1zoom.me/big0/896/Dogs_Many_White_background_Puppy_Bulldog_Spaniel_565687_1280x512.jpg?format=webp&width=1025&height=410') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 3em 1em;
@@ -89,11 +89,17 @@ main {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 1em;
 }
 
 form label {
@@ -101,7 +107,7 @@ form label {
     font-weight: bold;
 }
 
-form input, form textarea {
+form input {
     padding: 0.75em;
     margin-top: 0.5em;
     border: 1px solid #ddd;
@@ -201,4 +207,12 @@ footer {
 #profile-info p {
     font-size: 1.2em;
     font-weight: bold;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
 }
