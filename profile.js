@@ -2,25 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const profileName = document.getElementById('profile-name');
     const profilePicture = document.getElementById('profile-picture');
-    const contactLink = document.getElementById('contact-link');
     const profilePicForm = document.getElementById('profile-pic-form');
     const usernameForm = document.getElementById('username-form');
     const passwordForm = document.getElementById('password-form');
-    const contactForm = document.getElementById('contact-form');
+    const contactLinkForm = document.getElementById('contact-link-form');
     const deleteAccountBtn = document.getElementById('delete-account');
     const users = JSON.parse(localStorage.getItem('users')) || [];
     let user = users.find(user => user.username === loggedInUser);
 
     if (loggedInUser) {
         profileName.textContent = loggedInUser;
-
+        
         if (user && user.profilePicture) {
             profilePicture.src = user.profilePicture;
             profilePicture.style.display = 'block';
-        }
-
-        if (user && user.contactUrl) {
-            contactLink.innerHTML = `<a href="${user.contactUrl}" target="_blank">Link para Contato</a>`;
         }
 
         profilePicForm.addEventListener('submit', function(event) {
@@ -70,17 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        contactForm.addEventListener('submit', function(event) {
+        contactLinkForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            const contactUrl = document.getElementById('contact-url').value.trim();
-            if (contactUrl) {
-                user.contactUrl = contactUrl;
+            const newContactLink = document.getElementById('new-contact-link').value.trim();
+            if (newContactLink) {
+                user.contactLink = newContactLink;
                 localStorage.setItem('users', JSON.stringify(users));
-                contactLink.innerHTML = `<a href="${contactUrl}" target="_blank">Link para Contato</a>`;
-                alert('Link para contato salvo com sucesso.');
-                document.getElementById('contact-url').value = '';
+                alert('Link de contato alterado com sucesso.');
+                document.getElementById('new-contact-link').value = '';
             } else {
-                alert('Link inválido.');
+                alert('Link de contato inválido.');
             }
         });
 

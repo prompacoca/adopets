@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             profileImg.classList.add('profile-img');
             welcomeMessage.appendChild(profileImg);
         }
-        const usernameSpan = document.createElement('span');
-        usernameSpan.textContent = `Bem-vindo, ${loggedInUser}!`;
-        usernameSpan.classList.add('username-span');
-        welcomeMessage.appendChild(usernameSpan);
+        welcomeMessage.appendChild(document.createTextNode(`Bem-vindo, ${loggedInUser}!`));
         if (registerLink) registerLink.style.display = 'none';
         if (loginLink) loginLink.style.display = 'none';
         if (profileLink) profileLink.style.display = 'block';
@@ -57,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p><strong>Raça:</strong> ${pet.breed}</p>
                 <p>${pet.description}</p>
                 ${pet.username === loggedInUser ? `<button class="remove-pet" data-index="${index}">Remover</button>` : ''}
+                <button class="adopt-pet" data-index="${index}">Adotar</button>
             `;
 
             petsList.appendChild(petCard);
@@ -68,12 +66,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 removePet(index);
             });
         });
+
+        document.querySelectorAll('.adopt-pet').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                adoptPet(index);
+            });
+        });
     }
 
     function removePet(index) {
         pets.splice(index, 1);
         savePets(pets);
         displayPets();
+    }
+
+    function adoptPet(index) {
+        const pet = pets[index];
+        const owner = users.find(user => user.username === pet.username);
+        if (owner && owner.contactLink) {
+            window.location.href = owner.contactLink;
+        } else {
+            alert('Este usuário não possui um link de contato.');
+        }
     }
 
     const errorMessage = document.createElement('p');
